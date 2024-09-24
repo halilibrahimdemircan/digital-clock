@@ -20,7 +20,6 @@ const segmentConfig: Record<string, string[]> = {
 
 const Digit: React.FC<DigitProps> = ({ value }) => {
   const activeSegments = segmentConfig[value] || [];
-
   return (
     <div className="relative w-10 h-20 m-1">
       <Segment className="a top-0 left-1/2 -translate-x-1/2 w-8 h-2" active={activeSegments.includes('a')} />

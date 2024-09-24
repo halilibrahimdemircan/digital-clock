@@ -3,14 +3,19 @@ import Digit from './Digit';
 import Seperator from './Seperator';
 
 const Clock: React.FC = () => {
-  const [time, setTime] = useState<Date>(new Date());
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    setTime(new Date());
+
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000);
+
     return () => clearInterval(interval);
   }, []);
+
+  if (!time) return null;
 
   const formatTime = (date: Date): string => {
     const hours = String(date.getHours()).padStart(2, '0');
@@ -25,10 +30,10 @@ const Clock: React.FC = () => {
     <div className="flex items-center space-x-3">
       <Digit value={timeString[0]} />
       <Digit value={timeString[1]} />
-      <Seperator/>
+      <Seperator />
       <Digit value={timeString[2]} />
       <Digit value={timeString[3]} />
-      <Seperator/>
+      <Seperator />
       <Digit value={timeString[4]} />
       <Digit value={timeString[5]} />
     </div>
